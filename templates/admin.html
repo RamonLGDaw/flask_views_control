@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Administrar Aplicaciones - Control de Visitas{% endblock %}
+{% block page_title %}Administrar Aplicaciones{% endblock %}
+
+{% block content %}
+    <!-- Formulario para agregar una nueva aplicación -->
+    <form method="POST">
+        <div class="mb-3">
+            <label for="web_name" class="form-label">Nombre de la Aplicación</label>
+            <input type="text" class="form-control" id="web_name" name="web_name" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Registrar Aplicación</button>
+    </form>
+
+    <h2 class="mt-5">Aplicaciones Registradas</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Aplicación</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for app in apps %}
+                <tr>
+                    <td>{{ app.nombre }}</td>
+                    <td>
+                        <!-- Botón para eliminar la aplicación -->
+                        <form action="{{ url_for('eliminar_app', id=app.id) }}" method="POST" style="display:inline;">
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Enlace para volver a la página de inicio -->
+    <a href="{{ url_for('home') }}" class="btn btn-secondary mt-3">Volver a Inicio</a>
+{% endblock %}
