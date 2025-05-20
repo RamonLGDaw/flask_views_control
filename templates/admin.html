@@ -27,7 +27,8 @@
                     <td>{{ app.nombre }}</td>
                     <td>
                         <!-- Botón para eliminar la aplicación -->
-                        <form action="{{ url_for('eliminar_app', id=app.id) }}" method="POST" style="display:inline;">
+                        <form action="{{ url_for('eliminar_app', app_id=app['_id']) }}" method="POST" style="display:inline;">
+
                             <button type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
                     </td>
